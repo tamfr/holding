@@ -1,5 +1,5 @@
 # coding: utf-8
-# Holdin entries via parametric equations
+# Holding entries via parametric equations
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +23,7 @@ def plot_entry_orbit(
 	adjusted_hdg = normalize_deg(hdg-inbnd_crs+180)
 	
 	if 0 + 291*R <= adjusted_hdg <= 69 + 291*R:
-		print('Teardrop Entry')
+		entry_type = 'Teardrop Entry'
 		teardrop_hdg = normalize_deg(inbnd_crs + 180 + 30*(-1)**R)
 		
 		if hdg > teardrop_hdg:
@@ -34,11 +34,11 @@ def plot_entry_orbit(
 			R = (not R)*1 + R
 			
 	elif 69 + 40*R < adjusted_hdg < 251 + 40*R:
-		print('Direct Entry')
+		entry_type = 'Direct Entry'
 		turn = (hdg - inbnd_crs)*(-1)**R + 180
 		
 	else:
-		print('Parallel Entry')
+		entry_type = 'Parallel Entry'
 		turn = (180 - hdg)*(-1)**R - inbnd_crs
 		R = (not R)*1
 	
@@ -66,8 +66,6 @@ def plot_entry_orbit(
 	x = r * np.cos(theta + phase) + wind_x * t - origin_x
 	y = r * np.sin(theta + phase) + wind_y * t - origin_y
 	 
-
-#def plot_entry_orbit(inbnd_crs):
 	
 	inbnd_crs_xform = (-inbnd_crs + 180) * np.pi / 180 + np.pi / 2
 	
@@ -81,7 +79,7 @@ def plot_entry_orbit(
 	ax.plot(x_crs,y_crs)
 	ax.grid(True)
 	ax.set(aspect=1, adjustable='datalim')
-	ax.set_title("Holding entry.", va='bottom')
+	ax.set_title(entry_type, va='bottom')
 	plt.show()
 
 
