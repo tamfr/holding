@@ -23,24 +23,26 @@ def plot_entry_orbit(
 
     adjusted_hdg = normalize_deg(hdg - inbound_crs + 180)
 
+    switch_sign = (-1)**R
+
     if 0 + 291*R <= adjusted_hdg <= 69 + 291*R:
         entry_type = 'Teardrop Entry'
-        teardrop_hdg = normalize_deg(inbound_crs + 180 + 30 * (-1) ** R)
+        teardrop_hdg = normalize_deg(inbound_crs + 180 + 30 * switch_sign)
 
         if hdg > teardrop_hdg:
-            turn = hdg - (180 + 30*(-1)**R) - inbound_crs
+            turn = hdg - (180 + 30*switch_sign) - inbound_crs
             R = (not R)*1*R
         else:
-            turn = 180 + 30*(-1)**R + inbound_crs - hdg
+            turn = 180 + 30*switch_sign + inbound_crs - hdg
             R = (not R)*1 + R
 
     elif 69 + 40*R < adjusted_hdg < 251 + 40*R:
         entry_type = 'Direct Entry'
-        turn = (hdg - inbound_crs) * (-1) ** R + 180
+        turn = (hdg - inbound_crs)*switch_sign + 180
 
     else:
         entry_type = 'Parallel Entry'
-        turn = (180 - hdg)*(-1)**R + inbound_crs
+        turn = (180 - hdg)*switch_sign + inbound_crs
         R = (not R)*1
 
     hdg_xform = - hdg * np.pi / 180
