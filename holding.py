@@ -39,7 +39,7 @@ def plot_entry_orbit(
 		
 	else:
 		entry_type = 'Parallel Entry'
-		turn = (180 - hdg)*(-1)**R - inbnd_crs
+		turn = (180 - hdg)*(-1)**R + inbnd_crs
 		R = (not R)*1
 	
 	hdg_xform = - hdg * np.pi / 180
