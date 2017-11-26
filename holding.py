@@ -14,33 +14,33 @@ def normalize_deg(deg_to_norm):
 
 def plot_entry_orbit(
         hdg,
-        inbnd_crs,
+        inbound_crs,
         R,
         v,
         turn_rate,
         wind_direction,
         wind_vel):
 
-    adjusted_hdg = normalize_deg(hdg-inbnd_crs+180)
+    adjusted_hdg = normalize_deg(hdg - inbound_crs + 180)
 
     if 0 + 291*R <= adjusted_hdg <= 69 + 291*R:
         entry_type = 'Teardrop Entry'
-        teardrop_hdg = normalize_deg(inbnd_crs + 180 + 30*(-1)**R)
+        teardrop_hdg = normalize_deg(inbound_crs + 180 + 30 * (-1) ** R)
 
         if hdg > teardrop_hdg:
-            turn = hdg - (180 + 30*(-1)**R) - inbnd_crs
+            turn = hdg - (180 + 30*(-1)**R) - inbound_crs
             R = (not R)*1*R
         else:
-            turn = 180 + 30*(-1)**R + inbnd_crs - hdg
+            turn = 180 + 30*(-1)**R + inbound_crs - hdg
             R = (not R)*1 + R
 
     elif 69 + 40*R < adjusted_hdg < 251 + 40*R:
         entry_type = 'Direct Entry'
-        turn = (hdg - inbnd_crs)*(-1)**R + 180
+        turn = (hdg - inbound_crs) * (-1) ** R + 180
 
     else:
         entry_type = 'Parallel Entry'
-        turn = (180 - hdg)*(-1)**R + inbnd_crs
+        turn = (180 - hdg)*(-1)**R + inbound_crs
         R = (not R)*1
 
     hdg_xform = - hdg * np.pi / 180
@@ -66,7 +66,7 @@ def plot_entry_orbit(
     x = r * np.cos(theta + phase) + wind_x * t - origin_x
     y = r * np.sin(theta + phase) + wind_y * t - origin_y
 
-    inbnd_crs_xform = (-inbnd_crs + 180) * np.pi / 180 + np.pi / 2
+    inbnd_crs_xform = (-inbound_crs + 180) * np.pi / 180 + np.pi / 2
 
     r = np.arange(0, 6000, 10)
 
@@ -85,7 +85,7 @@ def plot_entry_orbit(
 
 hdg = 30
 R = 1
-inbnd_crs = 360
+inbound_crs = 360
 
 v = 128  # m/s
 turn_rate = 3  # degrees/s
@@ -95,7 +95,7 @@ wind_direction = 180 * np.pi / 180  # rad
 
 entry_orbit = plot_entry_orbit(
     hdg,
-    inbnd_crs,
+    inbound_crs,
     R,
     v,
     turn_rate,
