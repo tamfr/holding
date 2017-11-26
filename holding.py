@@ -66,12 +66,12 @@ def plot_entry_orbit(
     x = r * np.cos(theta + phase) + wind_x * t - origin_x
     y = r * np.sin(theta + phase) + wind_y * t - origin_y
 
-    inbnd_crs_xform = (-inbound_crs + 180) * np.pi / 180 + np.pi / 2
+    inbound_crs_xform = (-inbound_crs + 180) * np.pi / 180 + np.pi / 2
 
     r = np.arange(0, 6000, 10)
 
-    x_crs = r*np.cos(inbnd_crs_xform)
-    y_crs = r*np.sin(inbnd_crs_xform)
+    x_crs = r*np.cos(inbound_crs_xform)
+    y_crs = r*np.sin(inbound_crs_xform)
 
     ax = plt.subplot(111, polar=False)
     ax.plot(x, y)
