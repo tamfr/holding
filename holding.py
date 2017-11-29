@@ -49,13 +49,13 @@ def plot_entry_orbit(
     angular_vel = turn_rate * np.pi / 180  # rad/s
     wind_xform = - wind_direction + 3 * np.pi / 2
 
-    r = v / angular_vel
+    r = v / 3600 / angular_vel
     turn = normalize_deg(turn)
     time_to_turn = (turn / turn_rate)
     t = np.arange(0, time_to_turn, np.pi / 50)
 
-    wind_x = wind_vel * np.cos(wind_xform)
-    wind_y = wind_vel * np.sin(wind_xform)
+    wind_x = wind_vel / 3600 * np.cos(wind_xform)
+    wind_y = wind_vel / 3600 * np.sin(wind_xform)
 
     phase = hdg_xform + R * np.pi
 
@@ -70,7 +70,7 @@ def plot_entry_orbit(
 
     inbound_crs_xform = (180 - inbound_crs) * np.pi / 180 + np.pi / 2
 
-    r = np.arange(0, 6000, 10)
+    r = np.arange(0, 4, 0.1)
 
     x_crs = r*np.cos(inbound_crs_xform)
     y_crs = r*np.sin(inbound_crs_xform)
@@ -85,14 +85,14 @@ def plot_entry_orbit(
     return plt.show()
 
 
-hdg = 30
+hdg = 350
 R = 1
 inbound_crs = 360
 
-v = 128  # m/s
+v = 250  # kts
 turn_rate = 3  # degrees/s
 
-wind_vel = 0
+wind_vel = 20  # kts
 wind_direction = 180 * np.pi / 180  # rad
 
 entry_orbit = plot_entry_orbit(
