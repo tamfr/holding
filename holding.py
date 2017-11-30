@@ -47,7 +47,7 @@ def plot_entry_orbit(
 
     hdg_xform = - hdg * np.pi / 180
     angular_vel = turn_rate * np.pi / 180  # rad/s
-    wind_xform = - wind_direction + 3 * np.pi / 2
+    wind_xform = - wind_direction * np.pi / 180 + 3 * np.pi / 2  # rad
 
     r = v / 3600 / angular_vel
     turn = normalize_deg(turn)
@@ -85,15 +85,15 @@ def plot_entry_orbit(
     return plt.show()
 
 
-hdg = 350
+hdg = 350  # degrees
 R = 1
-inbound_crs = 360
+inbound_crs = 360  # degrees
 
 v = 250  # kts
 turn_rate = 3  # degrees/s
 
 wind_vel = 20  # kts
-wind_direction = 180 * np.pi / 180  # rad
+wind_direction = 180  # degrees
 
 entry_orbit = plot_entry_orbit(
     hdg,
