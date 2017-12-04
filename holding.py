@@ -94,14 +94,24 @@ def plot_holding_basic_area():
     a_b = 1.5  # Also G-F and J-K
     j_l = 3.3
 
-    x_a_l = np.arange(- a_l, 0, 0.1)
+    l_b = (a_l ** 2 + a_b ** 2) ** (1 / 2)
+
+    step = 0.01
+
+    x_a_l = np.arange(- a_l, 0, step)
     y_a_l = x_a_l * 0
-    x_l_m = np.arange(0, l_m, 0.1)
+    x_l_m = np.arange(0, l_m, step)
     y_l_m = x_l_m * 0
-    x_m_g = np.arange(l_m, m_g, 0.1)
+    x_m_g = np.arange(l_m, m_g, step)
     y_m_g = x_m_g * 0
-    y_a_b = np.arange(0, a_b, 0.1)
+    y_a_b = np.arange(0, a_b + step, step)
     x_a_b = - np.ones(len(y_a_b)) * a_l
+    x_i_h = x_l_m
+    y_i_h = - np.ones(len(x_i_h)) * l_i
+
+    theta = np.arange(0, np.pi / 2 - np.arccos(a_l / l_b) + step, step)
+    x_arc_b_c = l_b * np.cos(theta + np.pi/2)
+    y_arc_b_c = l_b * np.sin(theta + np.pi/2)
 
     ax = plt.subplot(111, polar=False)
 
@@ -109,6 +119,8 @@ def plot_holding_basic_area():
     ax.plot(x_l_m, y_l_m)
     ax.plot(x_m_g, y_m_g)
     ax.plot(x_a_b, y_a_b)
+    ax.plot(x_i_h, y_i_h)
+    ax.plot(x_arc_b_c, y_arc_b_c)
 
     ax.grid(True)
     ax.set(aspect=1, adjustable='datalim')
