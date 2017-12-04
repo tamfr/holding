@@ -85,10 +85,40 @@ def plot_entry_orbit(
 
     return plt.show()
 
+def plot_holding_basic_area():
+    a_l = 4.5
+    l_m = 4.3
+    m_g = 5.6
+    l_i = 3.5  # Also M-H
+    m_e = 5.3
+    a_b = 1.5  # Also G-F and J-K
+    j_l = 3.3
+
+    x_a_l = np.arange(- a_l, 0, 0.1)
+    y_a_l = x_a_l * 0
+    x_l_m = np.arange(0, l_m, 0.1)
+    y_l_m = x_l_m * 0
+    x_m_g = np.arange(l_m, m_g, 0.1)
+    y_m_g = x_m_g * 0
+    y_a_b = np.arange(0, a_b, 0.1)
+    x_a_b = - np.ones(len(y_a_b)) * a_l
+
+    ax = plt.subplot(111, polar=False)
+
+    ax.plot(x_a_l, y_a_l)
+    ax.plot(x_l_m, y_l_m)
+    ax.plot(x_m_g, y_m_g)
+    ax.plot(x_a_b, y_a_b)
+
+    ax.grid(True)
+    ax.set(aspect=1, adjustable='datalim')
+
+    return plt.show()
+
 
 heading = 350  # degrees
 right_turn = 1
-inbound_course = 360  # degrees
+inbound_course = 270  # degrees
 
 velocity = 250  # kts
 rate_of_turn = 3  # degrees/s
@@ -104,3 +134,5 @@ entry_orbit = plot_entry_orbit(
     rate_of_turn,
     wind_direction,
     wind_velocity)
+
+plot_holding_basic_area()
