@@ -85,7 +85,9 @@ def plot_entry_orbit(
 
     return plt.show()
 
+
 def plot_holding_basic_area():
+
     a_l = 4.5
     l_m = 4.3
     m_g = 5.6
