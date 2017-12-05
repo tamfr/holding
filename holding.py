@@ -113,6 +113,27 @@ def plot_holding_basic_area():
     x_arc_b_c = l_b * np.cos(theta + np.pi/2)
     y_arc_b_c = l_b * np.sin(theta + np.pi/2)
 
+    # Calculating arc BI
+    b_i = ((a_b + l_i)**2 + a_l**2)**(1/2)
+    b = np.arccos(b_i / (2 * l_b))
+    ratio = (b_i**2 + l_b**2 - l_i**2) / (2 * b_i * l_b)
+    phi = np.arccos(ratio)
+    gamma = b - phi
+    l_focal = (2 * l_b**2 * (1 - np.cos(gamma)))**(1/2)
+    ratio = (l_focal**2 + l_i**2 - l_b**2) / (2 * l_focal * l_i)
+    psi = np.arccos(ratio)
+    mu = psi - np.pi/2
+
+    x_focal = l_focal*np.cos(mu)
+    y_focal = l_focal*np.sin(mu)
+
+    epsilon = np.arctan((a_b - y_focal) / (-a_l - x_focal))
+    zeta = np.arctan((-x_focal) / (-l_i - y_focal))
+
+    theta = np.arange(np.pi + epsilon, 3*np.pi/2 - zeta + step, step)
+    x_arc_b_i = l_b * np.cos(theta) + x_focal
+    y_arc_b_i = l_b * np.sin(theta) + y_focal
+
     ax = plt.subplot(111, polar=False)
 
     ax.plot(x_a_l, y_a_l)
@@ -121,6 +142,7 @@ def plot_holding_basic_area():
     ax.plot(x_a_b, y_a_b)
     ax.plot(x_i_h, y_i_h)
     ax.plot(x_arc_b_c, y_arc_b_c)
+    ax.plot(x_arc_b_i, y_arc_b_i)
 
     ax.grid(True)
     ax.set(aspect=1, adjustable='datalim')
@@ -132,19 +154,19 @@ heading = 350  # degrees
 right_turn = 1
 inbound_course = 270  # degrees
 
-velocity = 250  # kts
+velocity = 250  # KIAS
 rate_of_turn = 3  # degrees/s
 
 wind_velocity = 20  # kts
 wind_direction = 180  # degrees
 
-entry_orbit = plot_entry_orbit(
-    heading,
-    inbound_course,
-    right_turn,
-    velocity,
-    rate_of_turn,
-    wind_direction,
-    wind_velocity)
+# entry_orbit = plot_entry_orbit(
+#     heading,
+#     inbound_course,
+#     right_turn,
+#     velocity,
+#     rate_of_turn,
+#     wind_direction,
+#     wind_velocity)
 
 plot_holding_basic_area()
