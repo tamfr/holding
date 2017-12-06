@@ -96,7 +96,7 @@ def plot_holding_basic_area():
     a_b = 1.5  # Also G-F and J-K
     j_l = 3.3
 
-    l_b = (a_l ** 2 + a_b ** 2) ** (1 / 2)
+    l_b = (a_l**2 + a_b**2)**(1 / 2)
 
     step = 0.01
 
@@ -116,25 +116,19 @@ def plot_holding_basic_area():
     y_arc_b_c = l_b * np.sin(theta + np.pi/2)
 
     # Calculating arc BI
-    b_i = ((a_b + l_i)**2 + a_l**2)**(1/2)
-    b = np.arccos(b_i / (2 * l_b))
-    ratio = (b_i**2 + l_b**2 - l_i**2) / (2 * b_i * l_b)
-    phi = np.arccos(ratio)
-    gamma = b - phi
-    l_focal = (2 * l_b**2 * (1 - np.cos(gamma)))**(1/2)
-    ratio = (l_focal**2 + l_i**2 - l_b**2) / (2 * l_focal * l_i)
-    psi = np.arccos(ratio)
-    mu = psi - np.pi/2
+    focal = calc_focal_point(l_i, a_l, a_b)
 
-    x_focal = l_focal*np.cos(mu)
-    y_focal = l_focal*np.sin(mu)
-
-    epsilon = np.arctan((a_b - y_focal) / (-a_l - x_focal))
-    zeta = np.arctan((-x_focal) / (-l_i - y_focal))
+    epsilon = np.arctan((a_b - focal[1]) / (-a_l - focal[0]))
+    zeta = np.arctan((-focal[0]) / (-l_i - focal[1]))
 
     theta = np.arange(np.pi + epsilon, 3*np.pi/2 - zeta + step, step)
-    x_arc_b_i = l_b * np.cos(theta) + x_focal
-    y_arc_b_i = l_b * np.sin(theta) + y_focal
+    x_arc_b_i = l_b * np.cos(theta) + focal[0]
+    y_arc_b_i = l_b * np.sin(theta) + focal[1]
+
+    # Calculating arc HG
+    focal = calc_focal_point(l_i, m_g, a_b)
+    print(focal)
+
 
     ax = plt.subplot(111, polar=False)
 
@@ -150,6 +144,23 @@ def plot_holding_basic_area():
     ax.set(aspect=1, adjustable='datalim')
 
     return plt.show()
+
+
+def calc_focal_point(f, lateral_offset, vertical_offset):
+    """ """
+    r = (vertical_offset**2 + lateral_offset**2)**(1/2)
+    h = ((f + vertical_offset)**2 + lateral_offset**2)**(1/2)
+    omega = np.arccos(h / (2*r))
+    phi = np.arccos((h**2 + r**2 - f**2) / (2*h*r))
+    gamma = omega - phi
+    c = (2*r**2 * (1 - np.cos(gamma)))**(1/2)
+    psi = np.arccos((f**2 + c**2 - r**2) / (2*f*c))
+    mu = psi - np.pi/2
+
+    x_focal = c * np.cos(mu)
+    y_focal = c * np.sin(mu)
+
+    return x_focal, y_focal
 
 
 heading = 350  # degrees
@@ -172,3 +183,9 @@ wind_direction = 180  # degrees
 #     wind_velocity)
 
 plot_holding_basic_area()
+
+l_i = 3.5
+a_b = 1.5
+a_l = 5.6
+
+print(calc_focal_point(l_i, a_l, a_b))
