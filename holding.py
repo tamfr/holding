@@ -147,7 +147,7 @@ def plot_holding_basic_area():
 
 
 def calc_focal_point(f, lateral_offset, vertical_offset):
-    """ """
+    """ Triangulates the focal point of the arc. """
     r = (vertical_offset**2 + lateral_offset**2)**(1/2)
     h = ((f + vertical_offset)**2 + lateral_offset**2)**(1/2)
     omega = np.arccos(h / (2*r))
