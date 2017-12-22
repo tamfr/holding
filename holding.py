@@ -104,7 +104,7 @@ def plot_holding_basic_area():
     y_a_l = x_a_l * 0
     x_l_m = np.arange(0, l_m, step)
     y_l_m = x_l_m * 0
-    x_m_g = np.arange(l_m, m_g, step)
+    x_m_g = np.arange(l_m, m_g + l_m, step)
     y_m_g = x_m_g * 0
     y_a_b = np.arange(0, a_b + step, step)
     x_a_b = - np.ones(len(y_a_b)) * a_l
@@ -127,7 +127,11 @@ def plot_holding_basic_area():
 
     # Calculating arc HG
     focal = calc_focal_point(l_i, m_g, a_b)
-    print(focal)
+    epsilon = np.arctan(focal[0] / (focal[1]+ l_i))
+    zeta = np.arctan((focal[1] - a_b) / (focal[0] + m_g))
+    theta = np.arange(3 * np.pi/2 + epsilon, 2 * np.pi - zeta + step, step)
+    x_arc_h_g = focal[2] * np.cos(theta) - focal[0] + l_m
+    y_arc_h_g = focal[2] * np.sin(theta) + focal[1]
 
 
     ax = plt.subplot(111, polar=False)
@@ -139,6 +143,7 @@ def plot_holding_basic_area():
     ax.plot(x_i_h, y_i_h)
     ax.plot(x_arc_b_c, y_arc_b_c)
     ax.plot(x_arc_b_i, y_arc_b_i)
+    ax.plot(x_arc_h_g, y_arc_h_g)
 
     ax.grid(True)
     ax.set(aspect=1, adjustable='datalim')
@@ -160,7 +165,7 @@ def calc_focal_point(f, lateral_offset, vertical_offset):
     x_focal = c * np.cos(mu)
     y_focal = c * np.sin(mu)
 
-    return x_focal, y_focal
+    return x_focal, y_focal, r
 
 
 heading = 350  # degrees
@@ -186,6 +191,6 @@ plot_holding_basic_area()
 
 l_i = 3.5
 a_b = 1.5
-a_l = 5.6
+m_g = 5.6
 
-print(calc_focal_point(l_i, a_l, a_b))
+print(calc_focal_point(l_i, m_g, a_b))
