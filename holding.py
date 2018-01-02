@@ -122,8 +122,8 @@ def plot_holding_basic_area():
     zeta = np.arctan((-focal[0]) / (-l_i - focal[1]))
 
     theta = np.arange(np.pi + epsilon, 3*np.pi/2 - zeta + step, step)
-    x_arc_b_i = l_b * np.cos(theta) + focal[0]
-    y_arc_b_i = l_b * np.sin(theta) + focal[1]
+    x_arc_b_i = focal[2] * np.cos(theta) + focal[0]
+    y_arc_b_i = focal[2] * np.sin(theta) + focal[1]
 
     # Calculating arc HG
     focal = calc_focal_point(l_i, m_g, a_b)
@@ -133,17 +133,24 @@ def plot_holding_basic_area():
     x_arc_h_g = focal[2] * np.cos(theta) - focal[0] + l_m
     y_arc_h_g = focal[2] * np.sin(theta) + focal[1]
 
+    # Calculating arc FE
+    # focal = calc_focal_point(m_e, m_g, a_b)
+    # print(focal)
+    # theta = np.arange(0, 2 * np.pi + step, step)
+    # x_arc_f_e = focal[2] * np.cos(theta) + focal[0] + l_m
+    # y_arc_f_e = focal[2] * np.sin(theta) - focal[1]
 
     ax = plt.subplot(111, polar=False)
 
     ax.plot(x_a_l, y_a_l)
     ax.plot(x_l_m, y_l_m)
     ax.plot(x_m_g, y_m_g)
-    ax.plot(x_a_b, y_a_b)
+    #ax.plot(x_a_b, y_a_b)
     ax.plot(x_i_h, y_i_h)
     ax.plot(x_arc_b_c, y_arc_b_c)
     ax.plot(x_arc_b_i, y_arc_b_i)
     ax.plot(x_arc_h_g, y_arc_h_g)
+    #ax.plot(x_arc_f_e, y_arc_f_e)
 
     ax.grid(True)
     ax.set(aspect=1, adjustable='datalim')
