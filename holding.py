@@ -134,11 +134,11 @@ def plot_holding_basic_area():
     y_arc_h_g = focal[2] * np.sin(theta) + focal[1]
 
     # Calculating arc FE
-    # focal = calc_focal_point(m_e, m_g, a_b)
-    # print(focal)
-    # theta = np.arange(0, 2 * np.pi + step, step)
-    # x_arc_f_e = focal[2] * np.cos(theta) + focal[0] + l_m
-    # y_arc_f_e = focal[2] * np.sin(theta) - focal[1]
+    focal = calc_focal_point(m_e, m_g, -a_b)
+    print(focal)
+    theta = np.arange(0, 2 * np.pi + step, step)
+    x_arc_f_e = focal[2] * np.cos(theta) + focal[0] + l_m
+    y_arc_f_e = focal[2] * np.sin(theta) - focal[1]
 
     ax = plt.subplot(111, polar=False)
 
@@ -150,7 +150,7 @@ def plot_holding_basic_area():
     ax.plot(x_arc_b_c, y_arc_b_c)
     ax.plot(x_arc_b_i, y_arc_b_i)
     ax.plot(x_arc_h_g, y_arc_h_g)
-    #ax.plot(x_arc_f_e, y_arc_f_e)
+    ax.plot(x_arc_f_e, y_arc_f_e)
 
     ax.grid(True)
     ax.set(aspect=1, adjustable='datalim')
