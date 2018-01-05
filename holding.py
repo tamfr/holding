@@ -136,7 +136,9 @@ def plot_holding_basic_area():
     # Calculating arc FE
     focal = calc_focal_point(m_e, m_g, -a_b)
     print(focal)
-    theta = np.arange(0, 2 * np.pi + step, step)
+    epsilon = np.arctan((focal[1] + a_b) / (m_g - focal[0]))
+    zeta = np.arctan(focal[0] / (focal[1] + m_e))
+    theta = np.arange(epsilon, np.pi/2 + zeta + step, step)
     x_arc_f_e = focal[2] * np.cos(theta) + focal[0] + l_m
     y_arc_f_e = focal[2] * np.sin(theta) - focal[1]
 
