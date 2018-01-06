@@ -105,21 +105,18 @@ def plot_holding_basic_area():
     y_l_m = x_l_m * 0
     x_m_g = np.arange(l_m, m_g + l_m, step)
     y_m_g = x_m_g * 0
-    y_a_b = np.arange(0, a_b + step, step)
-    x_a_b = - np.ones(len(y_a_b)) * a_l
-    x_i_h = x_l_m
-    y_i_h = - np.ones(len(x_i_h)) * l_i
 
+    # Calculate arc CB
     l_e = (l_m ** 2 + m_e ** 2) ** (1 / 2)
     phi = np.arccos(l_b / l_e)
     beta = np.arctan(m_e / l_m)
     epsilon = phi + beta
     zeta = np.pi - np.arccos(a_l / l_b)
     theta = np.arange(epsilon, zeta + step, step)
-    x_arc_b_c = l_b * np.cos(theta)
-    y_arc_b_c = l_b * np.sin(theta)
+    x_arc_c_b = l_b * np.cos(theta)
+    y_arc_c_b = l_b * np.sin(theta)
 
-    # Calculating arc BI
+    # Calculate arc BI
     focal = calc_focal_point(l_i, a_l, a_b)
 
     epsilon = np.arctan((a_b - focal[1]) / (-a_l - focal[0]))
@@ -129,7 +126,7 @@ def plot_holding_basic_area():
     x_arc_b_i = focal[2] * np.cos(theta) + focal[0]
     y_arc_b_i = focal[2] * np.sin(theta) + focal[1]
 
-    # Calculating arc HG
+    # Calculate arc HG
     focal = calc_focal_point(l_i, m_g, a_b)
     epsilon = np.arctan(focal[0] / (focal[1] + l_i))
     zeta = np.arctan((focal[1] - a_b) / (focal[0] + m_g))
@@ -137,7 +134,7 @@ def plot_holding_basic_area():
     x_arc_h_g = focal[2] * np.cos(theta) - focal[0] + l_m
     y_arc_h_g = focal[2] * np.sin(theta) + focal[1]
 
-    # Calculating arc FE
+    # Calculate arc FE
     focal = calc_focal_point(m_e, m_g, -a_b)
     epsilon = np.arctan((focal[1] + a_b) / (m_g - focal[0]))
     zeta = np.arctan(focal[0] / (focal[1] + m_e))
@@ -145,8 +142,8 @@ def plot_holding_basic_area():
     x_arc_f_e = focal[2] * np.cos(theta) + focal[0] + l_m
     y_arc_f_e = focal[2] * np.sin(theta) - focal[1]
 
-    x_perimeter = np.concatenate([x_arc_f_e, x_arc_b_c, x_arc_b_i, x_arc_h_g])
-    y_perimeter = np.concatenate([y_arc_f_e, y_arc_b_c, y_arc_b_i, y_arc_h_g])
+    x_perimeter = np.concatenate([x_arc_f_e, x_arc_c_b, x_arc_b_i, x_arc_h_g])
+    y_perimeter = np.concatenate([y_arc_f_e, y_arc_c_b, y_arc_b_i, y_arc_h_g])
 
     ax = plt.subplot(111, polar=False)
 
