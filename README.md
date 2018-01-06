@@ -14,4 +14,4 @@ the [FAA TERPS][1].
 
 ![alt text][holding area]
 
-[holding area]: ../blob/master/TERPS-holding_area_construction.png "Holding area construction"
+[holding area]: ../master/TERPS-holding_area_construction.png "Holding area construction"
