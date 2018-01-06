@@ -131,7 +131,7 @@ def plot_holding_basic_area():
 
     # Calculating arc HG
     focal = calc_focal_point(l_i, m_g, a_b)
-    epsilon = np.arctan(focal[0] / (focal[1]+ l_i))
+    epsilon = np.arctan(focal[0] / (focal[1] + l_i))
     zeta = np.arctan((focal[1] - a_b) / (focal[0] + m_g))
     theta = np.arange(3 * np.pi/2 + epsilon, 2 * np.pi - zeta + step, step)
     x_arc_h_g = focal[2] * np.cos(theta) - focal[0] + l_m
