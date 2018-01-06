@@ -94,7 +94,6 @@ def plot_holding_basic_area():
     l_i = 3.5  # Also M-H
     m_e = 5.3
     a_b = 1.5  # Also G-F and J-K
-    j_l = 3.3
 
     l_b = (a_l**2 + a_b**2)**(1 / 2)
 
@@ -111,9 +110,14 @@ def plot_holding_basic_area():
     x_i_h = x_l_m
     y_i_h = - np.ones(len(x_i_h)) * l_i
 
-    theta = np.arange(0, np.pi / 2 - np.arccos(a_l / l_b) + step, step)
-    x_arc_b_c = l_b * np.cos(theta + np.pi/2)
-    y_arc_b_c = l_b * np.sin(theta + np.pi/2)
+    l_e = (l_m ** 2 + m_e ** 2) ** (1 / 2)
+    phi = np.arccos(l_b / l_e)
+    beta = np.arctan(m_e / l_m)
+    epsilon = phi + beta
+    zeta = np.pi - np.arccos(a_l / l_b)
+    theta = np.arange(epsilon, zeta + step, step)
+    x_arc_b_c = l_b * np.cos(theta)
+    y_arc_b_c = l_b * np.sin(theta)
 
     # Calculating arc BI
     focal = calc_focal_point(l_i, a_l, a_b)
