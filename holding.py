@@ -135,7 +135,6 @@ def plot_holding_basic_area():
 
     # Calculating arc FE
     focal = calc_focal_point(m_e, m_g, -a_b)
-    print(focal)
     epsilon = np.arctan((focal[1] + a_b) / (m_g - focal[0]))
     zeta = np.arctan(focal[0] / (focal[1] + m_e))
     theta = np.arange(epsilon, np.pi/2 + zeta + step, step)
@@ -197,9 +196,3 @@ wind_direction = 180  # degrees
 #     wind_velocity)
 
 plot_holding_basic_area()
-
-l_i = 3.5
-a_b = 1.5
-m_g = 5.6
-
-print(calc_focal_point(l_i, m_g, a_b))
