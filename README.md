@@ -15,6 +15,7 @@ the [FAA TERPS][1].
 ![alt text][holding area]
 
 [holding area]: ../master/TERPS-holding_area_construction.png "Holding area construction"
+(source: [FAA TERPS][1])
 
 | Pattern Number | A-L | L-M | M-G | L-I M-H | M-E | A-B G-F | J-L | Total Length | Total Width |
 |----|------|------|------|------|------|------|------|------|------|
