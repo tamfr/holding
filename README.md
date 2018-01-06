@@ -11,3 +11,7 @@ outlined in the AIM results in staying inside the protected area as defined in
 the [FAA TERPS][1].  
 
 [1]: https://www.faa.gov/documentLibrary/media/Order/FAA_Order_8260.3C.pdf
+
+![alt text][holding area]
+
+[holding area]: ../blob/master/TERPS-holding_area_construction.png "Holding area construction"
