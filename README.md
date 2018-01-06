@@ -8,4 +8,6 @@ strong wind conditions. This code evaluates holding entries based on initial
 course to the holding fix, airspeed, wind speed, and wind direction, showing 
 graphically that under adverse conditions, following normal entry procedures as 
 outlined in the AIM results in staying inside the protected area as defined in 
-the FAA TERPS.  
+the [FAA TERPS][1].  
+
+[1]: https://www.faa.gov/documentLibrary/media/Order/FAA_Order_8260.3C.pdf
