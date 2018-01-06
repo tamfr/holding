@@ -43,7 +43,7 @@ def plot_entry_orbit(
 
     else:
         entry_type = 'Parallel Entry'
-        turn = (180 - hdg)*switch_sign + inbound_crs
+        turn = 180 + (inbound_course - hdg)*switch_sign
         R = (not R)*1
 
     hdg_xform = - hdg * np.pi / 180
@@ -186,13 +186,13 @@ rate_of_turn = 3  # degrees/s
 wind_velocity = 20  # kts
 wind_direction = 180  # degrees
 
-# entry_orbit = plot_entry_orbit(
-#     heading,
-#     inbound_course,
-#     right_turn,
-#     velocity,
-#     rate_of_turn,
-#     wind_direction,
-#     wind_velocity)
+entry_orbit = plot_entry_orbit(
+    heading,
+    inbound_course,
+    right_turn,
+    velocity,
+    rate_of_turn,
+    wind_direction,
+    wind_velocity)
 
 plot_holding_basic_area()
