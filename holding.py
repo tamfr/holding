@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 def normalize_deg(deg_to_norm):
     """ Ensures degrees are between 0 and 360. """
     add_360 = (deg_to_norm < 0) * 360
-    sub_360 = (deg_to_norm > 360) * 360
+    sub_360 = (deg_to_norm >= 360) * 360
     return deg_to_norm + add_360 - sub_360
 
 
