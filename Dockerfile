@@ -14,4 +14,5 @@ COPY . .
 CMD [ "python", "/scripts/holding.py" ]
 
 # run as: $ docker run --rm -v $PWD:/scripts python-holding
-# to interact with shell, run as: $ run -it -v $PWD:/scripts python-holding bash
+# to interact with shell, run as:
+# $ docker run --rm -it -v $PWD:/scripts python-holding bash
