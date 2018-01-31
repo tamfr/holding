@@ -54,4 +54,5 @@ Development notes:
 - https://runnable.com/docker/python/dockerize-your-python-application
 - https://www.youtube.com/watch?v=NEdDa3Zqu7s
 - https://hub.docker.com/_/python/
+- https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
 - https://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
