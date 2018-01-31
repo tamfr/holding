@@ -55,4 +55,5 @@ Development notes:
 - https://www.youtube.com/watch?v=NEdDa3Zqu7s
 - https://hub.docker.com/_/python/
 - https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+- https://gist.github.com/mitchwongho/11266726
 - https://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
