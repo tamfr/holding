@@ -3,6 +3,11 @@
 # Holding entries via parametric equations
 
 import numpy as np
+import matplotlib
+
+# The following line of code makes use of the Anti-Grain Geometry C++ library as
+# a backend to make raster (pixel) images of figures (e.g PNG) due to Docker.
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -13,7 +18,7 @@ def normalize_deg(deg_to_norm):
     return deg_to_norm + add_360 - sub_360
 
 
-def plot_entry_orbit(
+def entry_orbit(
         hdg,
         inbound_crs,
         R,
@@ -76,17 +81,10 @@ def plot_entry_orbit(
     x_crs = r*np.cos(inbound_crs_xform)
     y_crs = r*np.sin(inbound_crs_xform)
 
-    ax = plt.subplot(111, polar=False)
-    ax.plot(x, y)
-    ax.plot(x_crs, y_crs)
-    ax.grid(True)
-    ax.set(aspect=1, adjustable='datalim')
-    ax.set_title(entry_type, va='bottom')
-
-    return plt.show()
+    return (x, y, x_crs, y_crs, entry_type)
 
 
-def plot_holding_basic_area():
+def holding_basic_area():
 
     a_l = 4.5
     l_m = 4.3
@@ -145,18 +143,11 @@ def plot_holding_basic_area():
     x_perimeter = np.concatenate([x_arc_f_e, x_arc_c_b, x_arc_b_i, x_arc_h_g])
     y_perimeter = np.concatenate([y_arc_f_e, y_arc_c_b, y_arc_b_i, y_arc_h_g])
 
-    ax = plt.subplot(111, polar=False)
+    # ax.plot(x_a_l, y_a_l)
+    # ax.plot(x_l_m, y_l_m)
+    # ax.plot(x_m_g, y_m_g)
 
-    ax.plot(x_a_l, y_a_l)
-    ax.plot(x_l_m, y_l_m)
-    ax.plot(x_m_g, y_m_g)
-
-    ax.plot(x_perimeter, y_perimeter)
-
-    ax.grid(True)
-    ax.set(aspect=1, adjustable='datalim')
-
-    return plt.show()
+    return (x_perimeter, y_perimeter)
 
 
 def calc_focal_point(f, lateral_offset, vertical_offset):
@@ -173,7 +164,30 @@ def calc_focal_point(f, lateral_offset, vertical_offset):
     x_focal = c * np.cos(mu)
     y_focal = c * np.sin(mu)
 
-    return x_focal, y_focal, r
+    return (x_focal, y_focal, r)
+
+
+def plot_holding(basic_area, entry_orbit):
+    """ Plots holding basic area and entry orbit. """
+    x_perimeter = basic_area[0]
+    y_perimeter = basic_area[1]
+    x = entry_orbit[0]
+    y = entry_orbit[1]
+    x_crs = entry_orbit[2]
+    y_crs = entry_orbit[3]
+    entry_type = entry_orbit[4]
+
+    fig, ax = plt.subplots()
+
+    ax.plot(x_perimeter, y_perimeter)
+    ax.plot(x, y)
+    ax.plot(x_crs, y_crs)
+
+    ax.grid(True)
+    ax.set(aspect=1, adjustable='datalim')
+    ax.set_title(entry_type, va='bottom')
+
+    return fig.savefig('holding.png')
 
 
 heading = 350  # degrees
@@ -186,7 +200,7 @@ rate_of_turn = 3  # degrees/s
 wind_velocity = 20  # kts
 wind_direction = 180  # degrees
 
-entry_orbit = plot_entry_orbit(
+entry_orbit = entry_orbit(
     heading,
     inbound_course,
     right_turn,
@@ -195,4 +209,6 @@ entry_orbit = plot_entry_orbit(
     wind_direction,
     wind_velocity)
 
-plot_holding_basic_area()
+basic_area = holding_basic_area()
+
+plot_holding(basic_area, entry_orbit)

@@ -1,13 +1,13 @@
 ### Holding Entry Analysis
 
-A common misnomer in the aviation world is that there is a "protected side" 
-when holding either as published or as assigned. The reality is that the area 
-on both sides of the holding course is protected. This disqualifies 
-"techniques" when entering holding to stay on the "protected side" even under 
-strong wind conditions. This code evaluates holding entries based on initial 
-course to the holding fix, airspeed, wind speed, and wind direction, showing 
-graphically that under adverse conditions, following normal entry procedures as 
-outlined in the AIM results in staying inside the protected area as defined in 
+A common misnomer in the aviation world is that there is a "protected side"
+when holding either as published or as assigned. The reality is that the area
+on both sides of the holding course is protected. This disqualifies
+"techniques" when entering holding to stay on the "protected side" even under
+strong wind conditions. This code evaluates holding entries based on initial
+course to the holding fix, airspeed, wind speed, and wind direction, showing
+graphically that under adverse conditions, following normal entry procedures as
+outlined in the AIM results in staying inside the protected area as defined in
 the [FAA TERPS][1].  
 
 [1]: https://www.faa.gov/documentLibrary/media/Order/FAA_Order_8260.3C.pdf
@@ -49,3 +49,9 @@ the [FAA TERPS][1].
 | 29 | 28.0 | 15.8 | 34.6 | 20.1 | 32.0 | 10.0 | 19.3 | 78.4 | 52.1 |
 | 30 | 29.2 | 16.4 | 35.3 | 21.3 | 33.2 | 10.4 | 20.2 | 80.9 | 54.5 |
 | 31 | 30.9 | 17.0 | 37.0 | 22.5 | 34.5 | 11.0 | 21.9 | 84.9 | 57.0 |
+
+Development notes:
+- https://runnable.com/docker/python/dockerize-your-python-application
+- https://www.youtube.com/watch?v=NEdDa3Zqu7s
+- https://hub.docker.com/_/python/
+- https://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
