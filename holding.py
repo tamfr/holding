@@ -27,6 +27,8 @@ def entry_orbit(
         wind_dir,
         wind_vel):
 
+    """ Determines holding entry orbit type."""
+
     adjusted_hdg = normalize_deg(hdg - inbound_crs + 180)
 
     switch_sign = (-1)**R
