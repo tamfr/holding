@@ -186,7 +186,9 @@ def plot_holding(basic_area, entry_orbit):
     ax.plot(x_crs, y_crs)
 
     ax.grid(True)
-    ax.set(aspect=1, adjustable='datalim')
+    ax.set(aspect=1)
+    ax.set_xlim(min(x_perimeter) - 1, max(x_perimeter) + 1)
+    ax.set_ylim(min(y_perimeter) - 1, max(y_perimeter) + 1)
     ax.set_title(entry_type, va='bottom')
 
     return fig.savefig('holding.png')
@@ -231,7 +233,9 @@ def wind_graph(
     ax.plot(x_crs, y_crs)
 
     ax.grid(True)
-    ax.set(aspect=1, adjustable='datalim')
+    ax.set(aspect=1)
+    ax.set_xlim(min(x_perimeter) - 1, max(x_perimeter) + 1)
+    ax.set_ylim(min(y_perimeter) - 1, max(y_perimeter) + 1)
     ax.set_title(entry_type, va='bottom')
 
     return fig.savefig('holding.png')
