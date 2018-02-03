@@ -192,6 +192,51 @@ def plot_holding(basic_area, entry_orbit):
     return fig.savefig('holding.png')
 
 
+def wind_graph(
+        heading,
+        inbound_course,
+        right_turn,
+        velocity,
+        rate_of_turn,
+        wind_direction,
+        min_wind_vel,
+        max_wind_vel,
+        basic_area):
+    """ """
+    fig, ax = plt.subplots()
+    x_perimeter = basic_area[0]
+    y_perimeter = basic_area[1]
+    ax.plot(x_perimeter, y_perimeter)
+
+    step = 10
+    for wind_vel in np.arange(min_wind_vel, max_wind_vel, step):
+        entry_orb = entry_orbit(
+            heading,
+            inbound_course,
+            right_turn,
+            velocity,
+            rate_of_turn,
+            wind_direction,
+            wind_vel)
+
+        x = entry_orb[0]
+        y = entry_orb[1]
+
+        ax.plot(x, y)
+
+    x_crs = entry_orb[2]
+    y_crs = entry_orb[3]
+    entry_type = entry_orb[4]
+
+    ax.plot(x_crs, y_crs)
+
+    ax.grid(True)
+    ax.set(aspect=1, adjustable='datalim')
+    ax.set_title(entry_type, va='bottom')
+
+    return fig.savefig('holding.png')
+
+
 heading = 350  # degrees
 right_turn = 1
 inbound_course = 270  # degrees
@@ -202,15 +247,29 @@ rate_of_turn = 3  # degrees/s
 wind_velocity = 20  # kts
 wind_direction = 180  # degrees
 
-entry_orbit = entry_orbit(
+# entry_orbit = entry_orbit(
+#     heading,
+#     inbound_course,
+#     right_turn,
+#     velocity,
+#     rate_of_turn,
+#     wind_direction,
+#     wind_velocity)
+
+basic_area = holding_basic_area()
+
+#plot_holding(basic_area, entry_orbit)
+
+min_wind_velocity = 0
+max_wind_velocity = 50
+
+wind_graph(
     heading,
     inbound_course,
     right_turn,
     velocity,
     rate_of_turn,
     wind_direction,
-    wind_velocity)
-
-basic_area = holding_basic_area()
-
-plot_holding(basic_area, entry_orbit)
+    min_wind_velocity,
+    max_wind_velocity,
+    basic_area)
