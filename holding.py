@@ -202,7 +202,7 @@ def wind_graph(
         min_wind_vel,
         max_wind_vel,
         basic_area):
-    """ """
+    """ Graphs a gradient of holding entry orbits based on varying wind velocity. """
     fig, ax = plt.subplots()
     x_perimeter = basic_area[0]
     y_perimeter = basic_area[1]
