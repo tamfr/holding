@@ -238,7 +238,7 @@ def wind_graph(
     ax.set_ylim(min(y_perimeter) - 1, max(y_perimeter) + 1)
     ax.set_title(entry_type, va='bottom')
 
-    return fig.savefig('holding.png')
+    return fig.savefig('wind_graph.png')
 
 
 heading = 350  # degrees
