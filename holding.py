@@ -207,8 +207,9 @@ def wind_graph(
     """ Graphs a gradient of holding entry orbits based on varying wind
         velocity. """
     fig, ax = plt.subplots()
-    x_perimeter = basic_area[0]
-    y_perimeter = basic_area[1]
+    theta = normalize_deg(inbound_course - 270) * np.pi/180
+    x_perimeter = basic_area[0]*np.cos(theta) + basic_area[1]*np.sin(theta)
+    y_perimeter = basic_area[1]*np.cos(theta) - basic_area[0]*np.sin(theta)
     ax.plot(x_perimeter, y_perimeter)
 
     step = 10
@@ -244,7 +245,7 @@ def wind_graph(
 
 heading = 350  # degrees
 right_turn = 1
-inbound_course = 270  # degrees
+inbound_course = 90  # degrees
 
 velocity = 250  # KIAS
 rate_of_turn = 3  # degrees/s
