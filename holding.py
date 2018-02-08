@@ -210,7 +210,7 @@ def wind_graph(
     theta = normalize_deg(inbound_course - 270) * np.pi/180
     x_perimeter = basic_area[0]*np.cos(theta) + basic_area[1]*np.sin(theta)
     y_perimeter = basic_area[1]*np.cos(theta) - basic_area[0]*np.sin(theta)
-    ax.plot(x_perimeter, y_perimeter)
+    ax.plot(x_perimeter, y_perimeter, linewidth=1, color="red")
 
     step = 10
     for wind_vel in np.arange(min_wind_vel, max_wind_vel, step):
@@ -226,13 +226,13 @@ def wind_graph(
         x = entry_orb[0]
         y = entry_orb[1]
 
-        ax.plot(x, y)
+        ax.plot(x, y, linewidth=0.5)
 
     x_crs = entry_orb[2]
     y_crs = entry_orb[3]
     entry_type = entry_orb[4]
 
-    ax.plot(x_crs, y_crs)
+    ax.plot(x_crs, y_crs, linewidth=0.5)
 
     ax.grid(True)
     ax.set(aspect=1)
@@ -240,7 +240,7 @@ def wind_graph(
     ax.set_ylim(min(y_perimeter) - 1, max(y_perimeter) + 1)
     ax.set_title(entry_type, va='bottom')
 
-    return fig.savefig('wind_graph_' + entry_type + '.png')
+    return fig.savefig('wind_graph_' + entry_type + '.pdf')
 
 
 heading = 350  # degrees
