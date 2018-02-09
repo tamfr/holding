@@ -232,7 +232,7 @@ def wind_graph(
     y_crs = entry_orb[3]
     entry_type = entry_orb[4]
 
-    ax.plot(x_crs, y_crs, linewidth=0.5)
+    ax.plot(x_crs, y_crs, linewidth=0.5, color="black")
 
     ax.grid(True)
     ax.set(aspect=1)
