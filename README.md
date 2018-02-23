@@ -50,6 +50,12 @@ the [FAA TERPS][1].
 | 30 | 29.2 | 16.4 | 35.3 | 21.3 | 33.2 | 10.4 | 20.2 | 80.9 | 54.5 |
 | 31 | 30.9 | 17.0 | 37.0 | 22.5 | 34.5 | 11.0 | 21.9 | 84.9 | 57.0 |
 
+#### Workflow
+- Atom text editor
+- In terminal: $ docker run -it -v $PWD:/scripts python-holding bash
+- Subsequent runs of program: # python -i holding.py
+- When done with edits for the day: $ docker ps -q -a | xargs docker rm
+
 Development notes:
 - https://runnable.com/docker/python/dockerize-your-python-application
 - https://www.youtube.com/watch?v=NEdDa3Zqu7s
