@@ -18,6 +18,13 @@ def normalize_deg(deg_to_norm):
     return deg_to_norm + add_360 - sub_360
 
 
+def rotate_coordinates(x, y, theta):
+    """ Linear map of coordinates by rotation angle theta. """
+    x_rotated = x * np.cos(theta) + y * np.sin(theta)
+    y_rotated = y * np.cos(theta) - x * np.sin(theta)
+    return x_rotated, y_rotated
+
+
 def entry_orbit(
         hdg,
         inbound_crs,
@@ -208,9 +215,8 @@ def wind_graph(
         velocity. """
     fig, ax = plt.subplots()
     theta = normalize_deg(inbound_course - 270) * np.pi/180
-    x_perimeter = basic_area[0]*np.cos(theta) + basic_area[1]*np.sin(theta)
-    y_perimeter = basic_area[1]*np.cos(theta) - basic_area[0]*np.sin(theta)
-    ax.plot(x_perimeter, y_perimeter, linewidth=1, color="red")
+    perimeter_x_y = rotate_coordinates(basic_area[0], basic_area[1], theta)
+    ax.plot(perimeter_x_y[0], perimeter_x_y[1], linewidth=1, color="red")
 
     step = 10
     for wind_vel in np.arange(min_wind_vel, max_wind_vel, step):
@@ -236,8 +242,8 @@ def wind_graph(
 
     ax.grid(True)
     ax.set(aspect=1)
-    ax.set_xlim(min(x_perimeter) - 1, max(x_perimeter) + 1)
-    ax.set_ylim(min(y_perimeter) - 1, max(y_perimeter) + 1)
+    ax.set_xlim(min(perimeter_x_y[0]) - 1, max(perimeter_x_y[0]) + 1)
+    ax.set_ylim(min(perimeter_x_y[1]) - 1, max(perimeter_x_y[1]) + 1)
     ax.set_title(entry_type, va='bottom')
 
     return fig.savefig('wind_graph_' + entry_type + '.pdf')
@@ -245,7 +251,7 @@ def wind_graph(
 
 heading = 350  # degrees
 right_turn = 1
-inbound_course = 90  # degrees
+inbound_course = 60  # degrees
 
 velocity = 250  # KIAS
 rate_of_turn = 3  # degrees/s
