@@ -63,3 +63,5 @@ Development notes:
 - https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
 - https://gist.github.com/mitchwongho/11266726
 - https://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
+- https://en.wikipedia.org/wiki/Rotation_of_axes
+- https://en.wikipedia.org/wiki/Linear_map
