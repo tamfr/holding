@@ -83,7 +83,7 @@ def entry_orbit(
     x = r * np.cos(theta + phase) + wind_x * t - origin_x
     y = r * np.sin(theta + phase) + wind_y * t - origin_y
 
-    inbound_crs_xform = (180 - inbound_crs) * np.pi / 180 + np.pi / 2
+    inbound_crs_xform = (180 - inbound_crs + 90) * np.pi / 180
 
     r = np.arange(0, 4, 0.1)
 
