@@ -94,6 +94,8 @@ def entry_orbit(
 
 
 def holding_basic_area():
+    """ Uses the given TERPS dimensions to calculate the basic holding area
+    boundary. """
 
     a_l = 4.5
     l_m = 4.3
