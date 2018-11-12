@@ -58,6 +58,7 @@ the [FAA TERPS][1].
 
 #### Development notes:
 - https://runnable.com/docker/python/dockerize-your-python-application
+- https://docs.docker.com/get-started/part2/
 - https://www.youtube.com/watch?v=NEdDa3Zqu7s
 - https://hub.docker.com/_/python/
 - https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
