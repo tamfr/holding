@@ -62,7 +62,10 @@ the [FAA TERPS][1].
 - https://www.youtube.com/watch?v=NEdDa3Zqu7s
 - https://hub.docker.com/_/python/
 - https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/
+- https://vsupalov.com/speed-up-python-docker-image-build/
+- https://blog.realkinetic.com/building-minimal-docker-containers-for-python-applications-37d0272c52f3
 - https://gist.github.com/mitchwongho/11266726
 - https://matplotlib.org/faq/howto_faq.html#generate-images-without-having-a-window-appear
 - https://en.wikipedia.org/wiki/Rotation_of_axes
 - https://en.wikipedia.org/wiki/Linear_map
+- https://tiswww.case.edu/php/chet/bash/bashref.html#Invoking-Bash
